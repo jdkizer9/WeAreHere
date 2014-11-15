@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+typedef void(^LogBlock)(NSString *logString);
+
 @interface WRHIndoorLocationManager : NSObject
 
 
@@ -21,6 +23,7 @@
 @property (nonatomic) NSInteger numberOfBeaconSamples;
 @property (nonatomic) NSTimeInterval beaconSamplingInterval;
 @property (strong, nonatomic) NSString *classifierName;
+@property (strong, nonatomic) LogBlock logBlock;
 
 
 @end
