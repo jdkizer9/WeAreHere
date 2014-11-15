@@ -1,0 +1,21 @@
+# Uncomment this line to define a global platform for your project
+platform :ios, '6.0'
+
+target "WeAreHere" do
+
+pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworkActivityLogger', '~> 2.0'
+
+pod 'GroundControl', '~> 2.0'
+
+end
+
+target "WeAreHereTests" do
+
+pod 'AFNetworking', '~> 2.0'
+pod 'AFNetworkActivityLogger', '~> 2.0'
+
+pod 'GroundControl', '~> 2.0'
+
+end
+
