@@ -56,7 +56,7 @@
 {
     _indoorLocationManager = [WRHIndoorLocationManager sharedManager];
     _indoorLocationManager.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Cornell Tech Beacon Region"];
-    _indoorLocationManager.numberOfBeaconSamples = 30;
+    _indoorLocationManager.numberOfBeaconSamples = 10;
     _indoorLocationManager.classifierName = @"default classifier";
     _indoorLocationManager.logBlock = ^(NSString *logString) {
         [self addToTestLog:logString];

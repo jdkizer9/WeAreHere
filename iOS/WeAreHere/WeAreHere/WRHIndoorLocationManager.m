@@ -41,6 +41,8 @@
         self.locationManager.delegate = self;
         [self.locationManager requestAlwaysAuthorization];
         assert([CLLocationManager isRangingAvailable]);
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+        [self.locationManager startUpdatingLocation];
         
         self.pedometerManager = [[CMPedometer alloc]init];
         
@@ -159,9 +161,14 @@
     }
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    //Do nothing here, but enjoy ranging callbacks in background :-)
+}
+
 -(void)processBeaconSamples:(NSArray *)sampleArray
 {
     [self testLog:[NSString stringWithFormat:@"Just entered got a bunch of samples"]];
+    NSLog(@"%@", sampleArray);
     //reduce the beacon samples
     
     //send to server classifier to get room id
@@ -169,6 +176,8 @@
     //if not the current room (and within 30 mins) post room id to the server
         //save the room id
 }
+
+
 
 
 
