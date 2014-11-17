@@ -18,6 +18,7 @@
 		48BDE15A1A16DAE4004460F8 /* WRHSampler.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE1591A16DAE4004460F8 /* WRHSampler.m */; };
 		48BDE1901A171810004460F8 /* WRHIndoorLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */; };
 		48FE8F0D1A17267800A14C8D /* WRHSampleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */; };
+		48FE8F0F1A17E98E00A14C8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE8F0E1A17E98E00A14C8D /* MapKit.framework */; };
 		6AB643720A0B4708BEA0C6C7 /* libPods-WeAreHereTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHIndoorLocationManager.m; sourceTree = "<group>"; };
 		48FE8F0B1A17267800A14C8D /* WRHSampleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHSampleContainer.h; sourceTree = "<group>"; };
 		48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHSampleContainer.m; sourceTree = "<group>"; };
+		48FE8F0E1A17E98E00A14C8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A7F518784CCB47D896154ADF /* Pods-WeAreHereTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHereTests.xcconfig"; path = "Pods/Pods-WeAreHereTests.xcconfig"; sourceTree = "<group>"; };
 		B889DD8A73D34F9C80CE4797 /* Pods-WeAreHere.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHere.xcconfig"; path = "Pods/Pods-WeAreHere.xcconfig"; sourceTree = "<group>"; };
 		D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeAreHereTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48FE8F0F1A17E98E00A14C8D /* MapKit.framework in Frameworks */,
 				3179A73038DA4FC482974E89 /* libPods-WeAreHere.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,8 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				48BDE1361A16D394004460F8 /* AppDelegate.h */,
-				48BDE15B1A16DAFA004460F8 /* Controllers */,
 				48BDE1371A16D394004460F8 /* AppDelegate.m */,
+				48BDE15B1A16DAFA004460F8 /* Controllers */,
 				48BDE1391A16D394004460F8 /* ViewController.h */,
 				48BDE13A1A16D394004460F8 /* ViewController.m */,
 				48BDE13C1A16D394004460F8 /* Main.storyboard */,
@@ -156,6 +159,7 @@
 		7C7E3B5C0F034BFCAFA6583D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				48FE8F0E1A17E98E00A14C8D /* MapKit.framework */,
 				3859F4964D5C4608911E7B1F /* libPods-WeAreHere.a */,
 				D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */,
 			);
@@ -218,6 +222,9 @@
 						DevelopmentTeam = AA753846B2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
