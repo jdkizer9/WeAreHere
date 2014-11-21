@@ -84,7 +84,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="122" y="185" width="131" height="21"/>
+                                    <rect key="frame" x="122" y="283" width="131" height="21"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qX3-S9-0y3">
@@ -92,7 +92,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="83" y="230" width="208" height="30"/>
+                                    <rect key="frame" x="83" y="328" width="208" height="30"/>
                                 </variation>
                                 <connections>
                                     <outlet property="delegate" destination="HpM-af-TdI" id="Eua-nc-WHT"/>
@@ -104,7 +104,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="164" y="289" width="30" height="30"/>
+                                    <rect key="frame" x="164" y="387" width="30" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="KpZ-2L-wBR" kind="show" id="P1z-KI-dOr"/>
@@ -291,6 +291,7 @@
                         <viewControllerLayoutGuide type="bottom" id="zut-3S-b7Y"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GpW-fj-RZL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -319,7 +320,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="P1z-KI-dOr"/>
         <segue reference="nSw-Kh-uCN"/>
-        <segue reference="AhQ-eY-sE2"/>
     </inferredMetricsTieBreakers>
 </document>

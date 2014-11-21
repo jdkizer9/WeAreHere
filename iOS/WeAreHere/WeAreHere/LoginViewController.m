@@ -20,6 +20,7 @@
     [super viewDidLoad];
     self.username.delegate = self;
     NSLog(@"view did load");
+    [self addImageView];
     // Do any additional setup after loading the view.
 }
 
@@ -37,6 +38,13 @@
 
 }
 
+-(void)addImageView{
+    UIImageView *imgview = [[UIImageView alloc]
+                            initWithFrame:CGRectMake(38, 10, 300, 400)];
+    [imgview setImage:[UIImage imageNamed:@"Cornell_NYC_Tech_logo.png"]];
+    [imgview setContentMode:UIViewContentModeScaleAspectFit];
+    [self.view addSubview:imgview];
+}
 
 
 
@@ -46,7 +54,8 @@
     LocationsTableViewController *vc = [segue destinationViewController];
     NSLog(@"%@",_loginuser);
     vc.currentuser = _loginuser;
-    
+    _username.text = nil;
+    [_username resignFirstResponder];
     
 
 }
