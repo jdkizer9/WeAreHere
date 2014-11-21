@@ -48,25 +48,25 @@ static NSString *baseURLStringKey = @"BaseURL";
     return self;
 }
 
--(void)testLog:(NSString *)testLog
-       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-    
-    [self.operationManager GET:@"/testLog" parameters: @{@"testLog" : testLog} success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"%@", responseObject);
-        
-        if(success)
-            success(operation, responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-        if(failure)
-            failure(operation, error);
-        
-    }];
-}
+//-(void)testLog:(NSString *)testLog
+//       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+//{
+//    
+//    [self.operationManager GET:@"/testLog" parameters: @{@"testLog" : testLog} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSLog(@"%@", responseObject);
+//        
+//        if(success)
+//            success(operation, responseObject);
+//        
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//        if(failure)
+//            failure(operation, error);
+//        
+//    }];
+//}
 
 -(void)createOccupancy:(NSDictionary *)occupancyDictionary
           onCompletion:(void (^)(id))completionBlock

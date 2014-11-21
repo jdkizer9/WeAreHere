@@ -24,6 +24,7 @@ typedef void(^LogBlock)(NSString *logString);
 @property (nonatomic) NSTimeInterval beaconSamplingInterval;
 @property (strong, nonatomic) NSString *classifierName;
 @property (strong, nonatomic) LogBlock logBlock;
+@property (strong, nonatomic) NSString *userName;
 
 
 @end

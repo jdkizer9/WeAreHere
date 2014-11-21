@@ -154,11 +154,11 @@
 
 -(void)enterRegionHandler
 {
-    if(self.regionState == CLRegionStateInside)
-        [self.commManager testLog:[NSString stringWithFormat:@"State messed up for region"] success:nil failure:nil];
+//    if(self.regionState == CLRegionStateInside)
+//        [self.commManager testLog:[NSString stringWithFormat:@"State messed up for region"] success:nil failure:nil];
     self.regionState = CLRegionStateInside;
     [self testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier]];
-    [self.commManager testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier] success:nil failure:nil];
+//    [self.commManager testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier] success:nil failure:nil];
     //begin pedometer monitoring
     [self startMonitoringPedometer];
     //hack for background processing
@@ -169,7 +169,7 @@
 {
     self.regionState = CLRegionStateOutside;
     [self testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier]];
-    [self.commManager testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier] success:nil failure:nil];
+//    [self.commManager testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier] success:nil failure:nil];
     //stop pedometer monitoring
     [self stopMonitoringPedometer];
     
@@ -223,9 +223,42 @@
 -(void)processBeaconSamples:(NSArray *)sampleArray
 {
     [self testLog:[NSString stringWithFormat:@"Just got a bunch of samples"]];
-    //NSLog(@"%@", sampleArray);
+    NSLog(@"%@", sampleArray);
     
-    [self.commManager testLog:[NSString stringWithFormat:@"Just got a bunch of samples"] success:nil failure:nil];
+    //each sample contains an array of CLBeacons
+    
+    
+//    [self.commManager testLog:[NSString stringWithFormat:@"Just got a bunch of samples"] success:nil failure:nil];
+    
+    
+    NSDictionary *rssiDictionary = [self dictionaryForBeaconSamples:sampleArray];
+    
+    //get max rssi in dictionary and key
+    
+    __block id maxKey = nil;
+    __block NSNumber *maxValue = @(-10000);
+    [rssiDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+       
+        if([(NSNumber *)obj compare:maxValue] == NSOrderedDescending)
+        {
+            maxKey = key;
+            maxValue = (NSNumber *)obj;
+        }
+        
+    }];
+    
+    assert(maxKey);
+    
+    NSString *roomId = [self roomIdForBeaconKey:maxKey];
+    
+    NSDictionary *occupancyDictionary = @{@"name": self.userName, @"room_id": roomId};
+    
+    [[WRHCommunicationManager sharedManager] createOccupancy:occupancyDictionary onCompletion:^(id responseObject) {
+        
+        
+        
+    }];
+    
     
     //reduce the beacon samples
     
@@ -235,6 +268,99 @@
         //save the room id
 }
 
+-(NSDictionary *)dictionaryForBeaconSamples:(NSArray *)sampleArray
+{
+    __block NSMutableDictionary *beaconDictionaryWithArrays = [[NSMutableDictionary alloc]init];
+    
+    [sampleArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+       
+        //obj is an array of CLBeacons
+        [(NSArray *)obj enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            //obj is a CLBeacon
+            CLBeacon *beaconSample = (CLBeacon *)obj;
+            
+            NSString *beaconKey = [NSString stringWithFormat:@"%@:%@", beaconSample.major, beaconSample.minor];
+            
+            //check to see if an array exists in the dictionary for beaconKey
+            NSMutableArray *beaconArrayForKey = [beaconDictionaryWithArrays objectForKey:beaconKey];
+            if(!beaconArrayForKey)
+            {
+                beaconArrayForKey = [[NSMutableArray alloc]init];
+                [beaconDictionaryWithArrays setObject:beaconArrayForKey forKey:beaconKey];
+            }
+            
+            //add beacon sample
+            [beaconArrayForKey addObject:beaconSample];
+            
+        }];
+        
+    }];
+    
+    //reduce each array in beaconDictionary
+    
+    __block NSMutableDictionary *beaconDictionaryWithRSSI = [[NSMutableDictionary alloc]init];
+    
+    [beaconDictionaryWithArrays enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        //obj is NSArray of CLBeacon
+        NSArray *beaconArray = (NSArray *)obj;
+        __block NSMutableArray * rssiArray = [[NSMutableArray alloc]init];
+        
+        [beaconArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            CLBeacon *beacon = (CLBeacon *)obj;
+            
+            if(beacon.rssi != 0)
+                [rssiArray addObject:[NSNumber numberWithLong:beacon.rssi]];
+            else
+                [rssiArray addObject:[NSNumber numberWithLong:-1000]];
+        }];
+        
+        for (NSUInteger i=[rssiArray count]; i<self.numberOfBeaconSamples; i++)
+        {
+            [rssiArray addObject:[NSNumber numberWithLong:-1000]];
+        }
+        
+        
+        NSNumber *medianRSSI;
+        
+        NSSortDescriptor *sorted = [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:YES];
+        [rssiArray sortUsingDescriptors:[NSArray arrayWithObject:sorted]];
+        if ([rssiArray count]%2 == 1){
+            NSUInteger middle = [rssiArray count] / 2;
+            //NSNumber *median = [rssiArray objectAtIndex:middle];
+            medianRSSI = [rssiArray objectAtIndex:middle];
+        }
+        else{
+            NSInteger medianInt =
+            
+            ([[rssiArray objectAtIndex:([rssiArray count]/2)] integerValue] +
+        
+            [[rssiArray objectAtIndex:([rssiArray count]/2) - 1] integerValue]) / 2;
+            medianRSSI = @(medianInt);
+        }
+        
+        [beaconDictionaryWithRSSI setObject:medianRSSI forKey:key];
+        
+    }];
+    
+    return [NSDictionary dictionaryWithDictionary:beaconDictionaryWithRSSI];
+}
+
+-(NSString *)roomIdForBeaconKey:(NSString *)beaconKey
+{
+    NSDictionary *roomIdMapping = @{@"30201:10" : @(17),
+                                    @"30205:1" : @(11),
+                                    @"30299:2" : @(14),
+                                    @"30204:1" : @(12),
+                                    @"30207:1" : @(9),
+                                    @"30206:1" : @(10),
+                                    @"30203:2" : @(13),
+                                    @"30200:4" : @(14)};
+    
+    return [roomIdMapping objectForKey:beaconKey];
+}
 
 
 

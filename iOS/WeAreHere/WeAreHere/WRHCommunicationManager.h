@@ -13,9 +13,9 @@
 
 + (id)sharedManager;
 
--(void)testLog:(NSString *)testLog
-       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+//-(void)testLog:(NSString *)testLog
+//       success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+//       failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 -(void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock;
 

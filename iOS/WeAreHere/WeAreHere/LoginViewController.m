@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "LocationsTableViewController.h"
 #import "WRHCommunicationManager.h"
+#import "WRHIndoorLocationManager.h"
 
 
 @interface LoginViewController ()
@@ -52,13 +53,28 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  
-    [[WRHCommunicationManager sharedManager] createOccupancy:@{@"name": @"James", @"room_id": @"17"} onCompletion:^(id responseObject) {
-        LocationsTableViewController *vc = [segue destinationViewController];
-        NSLog(@"%@",_loginuser);
-        vc.currentuser = _loginuser;
-        _username.text = nil;
-        [_username resignFirstResponder];
-    }];
+    
+//    [[WRHCommunicationManager sharedManager] createOccupancy:@{@"name": @"James", @"room_id": @"17"} onCompletion:^(id responseObject) {
+//        LocationsTableViewController *vc = [segue destinationViewController];
+//        NSLog(@"%@",_loginuser);
+//        vc.currentuser = _loginuser;
+//        _username.text = nil;
+//        [_username resignFirstResponder];
+//    }];
+    
+    LocationsTableViewController *vc = [segue destinationViewController];
+    NSLog(@"%@",_loginuser);
+    vc.currentuser = _loginuser;
+    WRHIndoorLocationManager *indoorLocationManger = [WRHIndoorLocationManager sharedManager];
+    indoorLocationManger.userName = [NSString stringWithString:self.loginuser];
+    indoorLocationManger.beaconRegion = [[CLBeaconRegion alloc]initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Cornell Tech Beacon Region"];
+    indoorLocationManger.numberOfBeaconSamples = 10;
+    indoorLocationManger.classifierName = @"default classifier";
+    
+    [indoorLocationManger startMonitoringIndoorLocation];
+    
+    _username.text = nil;
+    [_username resignFirstResponder];
    
     
 

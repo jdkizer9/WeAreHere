@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) NSArray *occupancyArray;
 @property (strong, nonatomic) WRHOccupancy *selectedOccupancy;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -39,15 +40,36 @@
     self.locations= [[NSArray alloc] initWithObjects: @"Entrance", @"Studio", @"Big Red",
                  @"Fozzie", @"Unknown", nil];
     
+    //[self loadData];
+    
+    NSLog(@"Current user is %@", _currentuser);
+    
+    
+//    self.refreshControl = [[UIRefreshControl alloc] init];
+//    self.refreshControl.backgroundColor = [UIColor purpleColor];
+//    self.refreshControl.tintColor = [UIColor whiteColor];
+//    [self.refreshControl addTarget:self
+//                            action:@selector(loadData)
+//                  forControlEvents:UIControlEventValueChanged];
+
+    
+}
+
+-(void)loadData
+{
+    
     [[WRHOccupancyManager sharedManager] getOccupancyOnCompletion:^(NSArray *occupancyArray) {
         
         self.occupancyArray = [NSArray arrayWithArray:occupancyArray];
         [self.tableView reloadData];
         
     }];
-    
-    NSLog(@"Current user is %@", _currentuser);
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
