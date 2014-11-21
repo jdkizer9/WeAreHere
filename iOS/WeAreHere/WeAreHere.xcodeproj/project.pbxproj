@@ -17,6 +17,11 @@
 		48BDE14F1A16D394004460F8 /* WeAreHereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE14E1A16D394004460F8 /* WeAreHereTests.m */; };
 		48BDE15A1A16DAE4004460F8 /* WRHSampler.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE1591A16DAE4004460F8 /* WRHSampler.m */; };
 		48BDE1901A171810004460F8 /* WRHIndoorLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */; };
+		48E9F3E61A1E8D770042258E /* WRHCommunicationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E9F3E51A1E8D770042258E /* WRHCommunicationManager.m */; };
+		48E9F3E91A1ED0410042258E /* WRHRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E9F3E81A1ED0410042258E /* WRHRoom.m */; };
+		48E9F3EC1A1ED0C20042258E /* WRHRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E9F3EB1A1ED0C20042258E /* WRHRoomManager.m */; };
+		48E9F3EF1A1EDF5F0042258E /* WRHOccupancy.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E9F3EE1A1EDF5F0042258E /* WRHOccupancy.m */; };
+		48E9F3F21A1EF4760042258E /* WRHOccupancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E9F3F11A1EF4760042258E /* WRHOccupancyManager.m */; };
 		48FE8F0D1A17267800A14C8D /* WRHSampleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */; };
 		48FE8F0F1A17E98E00A14C8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE8F0E1A17E98E00A14C8D /* MapKit.framework */; };
 		6AB643720A0B4708BEA0C6C7 /* libPods-WeAreHereTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */; };
@@ -51,6 +56,16 @@
 		48BDE1591A16DAE4004460F8 /* WRHSampler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHSampler.m; sourceTree = "<group>"; };
 		48BDE18E1A171810004460F8 /* WRHIndoorLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHIndoorLocationManager.h; sourceTree = "<group>"; };
 		48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHIndoorLocationManager.m; sourceTree = "<group>"; };
+		48E9F3E41A1E8D770042258E /* WRHCommunicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHCommunicationManager.h; sourceTree = "<group>"; };
+		48E9F3E51A1E8D770042258E /* WRHCommunicationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHCommunicationManager.m; sourceTree = "<group>"; };
+		48E9F3E71A1ED0410042258E /* WRHRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHRoom.h; sourceTree = "<group>"; };
+		48E9F3E81A1ED0410042258E /* WRHRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHRoom.m; sourceTree = "<group>"; };
+		48E9F3EA1A1ED0C20042258E /* WRHRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHRoomManager.h; sourceTree = "<group>"; };
+		48E9F3EB1A1ED0C20042258E /* WRHRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHRoomManager.m; sourceTree = "<group>"; };
+		48E9F3ED1A1EDF5F0042258E /* WRHOccupancy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHOccupancy.h; sourceTree = "<group>"; };
+		48E9F3EE1A1EDF5F0042258E /* WRHOccupancy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHOccupancy.m; sourceTree = "<group>"; };
+		48E9F3F01A1EF4760042258E /* WRHOccupancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHOccupancyManager.h; sourceTree = "<group>"; };
+		48E9F3F11A1EF4760042258E /* WRHOccupancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHOccupancyManager.m; sourceTree = "<group>"; };
 		48FE8F0B1A17267800A14C8D /* WRHSampleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHSampleContainer.h; sourceTree = "<group>"; };
 		48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHSampleContainer.m; sourceTree = "<group>"; };
 		48FE8F0E1A17E98E00A14C8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -152,6 +167,16 @@
 				48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */,
 				48BDE18E1A171810004460F8 /* WRHIndoorLocationManager.h */,
 				48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */,
+				48E9F3E41A1E8D770042258E /* WRHCommunicationManager.h */,
+				48E9F3E51A1E8D770042258E /* WRHCommunicationManager.m */,
+				48E9F3ED1A1EDF5F0042258E /* WRHOccupancy.h */,
+				48E9F3EE1A1EDF5F0042258E /* WRHOccupancy.m */,
+				48E9F3F01A1EF4760042258E /* WRHOccupancyManager.h */,
+				48E9F3F11A1EF4760042258E /* WRHOccupancyManager.m */,
+				48E9F3E71A1ED0410042258E /* WRHRoom.h */,
+				48E9F3E81A1ED0410042258E /* WRHRoom.m */,
+				48E9F3EA1A1ED0C20042258E /* WRHRoomManager.h */,
+				48E9F3EB1A1ED0C20042258E /* WRHRoomManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -343,10 +368,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				48BDE1901A171810004460F8 /* WRHIndoorLocationManager.m in Sources */,
+				48E9F3E61A1E8D770042258E /* WRHCommunicationManager.m in Sources */,
+				48E9F3E91A1ED0410042258E /* WRHRoom.m in Sources */,
 				48BDE15A1A16DAE4004460F8 /* WRHSampler.m in Sources */,
 				48BDE13B1A16D394004460F8 /* ViewController.m in Sources */,
+				48E9F3F21A1EF4760042258E /* WRHOccupancyManager.m in Sources */,
+				48E9F3EC1A1ED0C20042258E /* WRHRoomManager.m in Sources */,
 				48BDE1381A16D394004460F8 /* AppDelegate.m in Sources */,
 				48BDE1351A16D394004460F8 /* main.m in Sources */,
+				48E9F3EF1A1EDF5F0042258E /* WRHOccupancy.m in Sources */,
 				48FE8F0D1A17267800A14C8D /* WRHSampleContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
