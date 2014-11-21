@@ -19,7 +19,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    CLLocationDegrees latitude = -11;
+    CLLocationDegrees longitude = 103;
+    
     NSLog(@"MAP USER IS %@", _user);
+    NSLog(@"MAP LOCATION IS %@", _location);
+   
+    if([_location  isEqual: @"Studio"]){
+        latitude = 35;
+        longitude = 100;
+    }
+    if([_location  isEqual: @"Big Red"]){
+        latitude = 40;
+        longitude = 133;
+    }
+    if([_location  isEqual: @"Fozzie"]){
+        latitude = 15;
+        longitude =10;
+    }
     
     RMMBTilesSource *offlineSource = [[RMMBTilesSource alloc] initWithTileSetResource:@"cornellfloorplan" ofType:@"mbtiles"];
     
@@ -33,8 +50,6 @@
     
     [self.view addSubview:mapView];
     
-    CLLocationDegrees latitude = 20;
-    CLLocationDegrees longitude = 40;
     
     CLLocationCoordinate2D yourLocation = CLLocationCoordinate2DMake(latitude, longitude);
     

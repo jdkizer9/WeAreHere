@@ -59,7 +59,9 @@
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-
+    
+    
+    
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     cell.textLabel.text=[self.users objectAtIndex:indexPath.row];
@@ -92,6 +94,7 @@
 {
     lastIndexPath = indexPath;
     _finduser = [self.users objectAtIndex:indexPath.row];
+    _findlocation = [self.locations objectAtIndex:indexPath.row];
     
     
     [tableView reloadData];
@@ -103,6 +106,7 @@
     MapViewController *vc = [segue destinationViewController];
 
     vc.user = _finduser;
+    vc.location = _findlocation;
     
     
 }

@@ -24,6 +24,7 @@
 		DB2DF9391A1E8A5300103DE9 /* LocationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DF9381A1E8A5300103DE9 /* LocationsTableViewController.m */; };
 		DB2DF93C1A1E940200103DE9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DF93B1A1E940200103DE9 /* MapViewController.m */; };
 		DB2DF93F1A1E96D500103DE9 /* cornellfloorplan.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */; };
+		DB2DF97E1A1EE85E00103DE9 /* Cornell_NYC_Tech_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DB2DF97D1A1EE85E00103DE9 /* Cornell_NYC_Tech_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		DB2DF93A1A1E940200103DE9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		DB2DF93B1A1E940200103DE9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = cornellfloorplan.mbtiles; path = WeAreHere/cornellfloorplan.mbtiles; sourceTree = "<group>"; };
+		DB2DF97D1A1EE85E00103DE9 /* Cornell_NYC_Tech_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cornell_NYC_Tech_logo.png; sourceTree = "<group>"; };
 		ECFA41194F5AEAC8E15040F0 /* Pods-WeAreHereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHereTests/Pods-WeAreHereTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FC525FBA257296B39D97F1B9 /* Pods-WeAreHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHere/Pods-WeAreHere.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,6 +201,7 @@
 		DB2DF93E1A1E961B00103DE9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB2DF97D1A1EE85E00103DE9 /* Cornell_NYC_Tech_logo.png */,
 				DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */,
 			);
 			name = Resources;
@@ -302,6 +305,7 @@
 				48BDE13E1A16D394004460F8 /* Main.storyboard in Resources */,
 				48BDE1431A16D394004460F8 /* LaunchScreen.xib in Resources */,
 				48BDE1401A16D394004460F8 /* Images.xcassets in Resources */,
+				DB2DF97E1A1EE85E00103DE9 /* Cornell_NYC_Tech_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

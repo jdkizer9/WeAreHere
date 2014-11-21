@@ -12,8 +12,8 @@
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, strong) NSString *currentuser;
-@property (nonatomic, strong) NSString *currentlocation;
 @property NSString *finduser;
+@property NSString *findlocation;
 
 
 @end
