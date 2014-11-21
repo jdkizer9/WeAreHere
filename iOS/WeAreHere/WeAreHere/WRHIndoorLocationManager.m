@@ -10,6 +10,8 @@
 #import <CoreMotion/CoreMotion.h>
 #import "WRHSampleContainer.h"
 
+#import "WRHCommunicationManager.h"
+
 @interface WRHIndoorLocationManager() <CLLocationManagerDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -17,6 +19,13 @@
 @property (strong, nonatomic) CMPedometer *pedometerManager;
 @property (strong, nonatomic) CMPedometerData *lastPedometerReading;
 @property (strong, atomic) WRHSampleContainer *sampleContainer;
+
+@property (strong, nonatomic) WRHCommunicationManager *commManager;
+@property (nonatomic) NSTimeInterval checkoutDelay;
+
+@property (atomic) CLRegionState regionState;
+
+
 
 @end
 
@@ -46,6 +55,11 @@
         
         self.pedometerManager = [[CMPedometer alloc]init];
         
+        self.commManager = [WRHCommunicationManager sharedController];
+        
+        self.checkoutDelay = 10.0;
+        self.regionState = CLRegionStateUnknown;
+        
     }
     return self;
 }
@@ -61,6 +75,9 @@
 {
     [self.locationManager startMonitoringForRegion:self.beaconRegion];
     [self testLog:[NSString stringWithFormat:@"Began Monitoring %@", self.beaconRegion]];
+    
+    
+    
     [self.locationManager requestStateForRegion:self.beaconRegion];
     [self testLog:[NSString stringWithFormat:@"Requested state for %@", self.beaconRegion]];
 }
@@ -83,6 +100,9 @@
 
 -(void)startMonitoringPedometer
 {
+    //get beacon samples for the first time
+    [self getBeaconSamples];
+    
     //begin pedometer monitoring
     [self testLog:[NSString stringWithFormat:@"Began Monitoring Pedometer Events"]];
     [self.pedometerManager startPedometerUpdatesFromDate:[NSDate date]
@@ -94,16 +114,22 @@
                                                      
                                                      [self testLog:[NSString stringWithFormat:@"Just received pedometer event.\n%@", pedometerData]];
                                                      
-                                                     //note that once the sample container is filled, it will call the completion block
-                                                     self.sampleContainer = [[WRHSampleContainer alloc]initWithNumberOfSamples:self.numberOfBeaconSamples
-                                                                                                               completionBlock:^(NSArray *sampleArray) {
-                                                                                                                   [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
-                                                                                                                   [self processBeaconSamples:sampleArray];
-                                                                                                               }];
-                                                     [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+                                                     [self getBeaconSamples];
+                                                     
                                                  }
                                              }];
     
+}
+
+-(void)getBeaconSamples
+{
+    //note that once the sample container is filled, it will call the completion block
+    self.sampleContainer = [[WRHSampleContainer alloc]initWithNumberOfSamples:self.numberOfBeaconSamples
+                                                              completionBlock:^(NSArray *sampleArray) {
+                                                                  [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+                                                                  [self processBeaconSamples:sampleArray];
+                                                              }];
+    [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
 }
 
 -(void)stopMonitoringPedometer
@@ -119,10 +145,36 @@
 {
     if([region.identifier isEqualToString:self.beaconRegion.identifier])
     {
-        [self testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier]];
-        //begin pedometer monitoring
-        [self startMonitoringPedometer];
+        if(self.regionState != CLRegionStateInside)
+            [self enterRegionHandler];
+        else
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(exitRegionHandler) object:nil];
     }
+}
+
+-(void)enterRegionHandler
+{
+    if(self.regionState == CLRegionStateInside)
+        [self.commManager testLog:[NSString stringWithFormat:@"State messed up for region"] success:nil failure:nil];
+    self.regionState = CLRegionStateInside;
+    [self testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier]];
+    [self.commManager testLog:[NSString stringWithFormat:@"Just entered %@", self.beaconRegion.identifier] success:nil failure:nil];
+    //begin pedometer monitoring
+    [self startMonitoringPedometer];
+    //hack for background processing
+    //[self.locationManager startUpdatingLocation];
+}
+
+-(void)exitRegionHandler
+{
+    self.regionState = CLRegionStateOutside;
+    [self testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier]];
+    [self.commManager testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier] success:nil failure:nil];
+    //stop pedometer monitoring
+    [self stopMonitoringPedometer];
+    
+    //hack for background processing
+    //[self.locationManager stopUpdatingLocation];
 }
 
 -(void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
@@ -130,9 +182,10 @@
     [self testLog:[NSString stringWithFormat:@"Determined state for %@: %li", region, state]];
     if([region.identifier isEqualToString:self.beaconRegion.identifier] && (state == CLRegionStateInside))
     {
-        [self testLog:[NSString stringWithFormat:@"You are in %@", self.beaconRegion.identifier]];
-        //begin pedometer monitoring
-        [self startMonitoringPedometer];
+        if(self.regionState != CLRegionStateInside)
+            [self enterRegionHandler];
+        else
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(exitRegionHandler) object:nil];
     }
 }
 
@@ -145,11 +198,13 @@
 {
     if([region.identifier isEqualToString:self.beaconRegion.identifier])
     {
-        [self testLog:[NSString stringWithFormat:@"Just exited %@", self.beaconRegion.identifier]];
-        //stop pedometer monitoring
-        [self stopMonitoringPedometer];
+        assert(self.regionState == CLRegionStateInside);
+        
+        [self performSelector:@selector(exitRegionHandler) withObject:nil afterDelay:self.checkoutDelay];
     }
 }
+
+
 
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
@@ -167,8 +222,11 @@
 
 -(void)processBeaconSamples:(NSArray *)sampleArray
 {
-    [self testLog:[NSString stringWithFormat:@"Just entered got a bunch of samples"]];
-    NSLog(@"%@", sampleArray);
+    [self testLog:[NSString stringWithFormat:@"Just got a bunch of samples"]];
+    //NSLog(@"%@", sampleArray);
+    
+    [self.commManager testLog:[NSString stringWithFormat:@"Just got a bunch of samples"] success:nil failure:nil];
+    
     //reduce the beacon samples
     
     //send to server classifier to get room id
