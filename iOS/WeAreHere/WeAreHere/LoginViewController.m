@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "LocationsTableViewController.h"
+#import "WRHCommunicationManager.h"
 
 
 @interface LoginViewController ()
@@ -50,12 +51,15 @@
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    LocationsTableViewController *vc = [segue destinationViewController];
-    NSLog(@"%@",_loginuser);
-    vc.currentuser = _loginuser;
-    _username.text = nil;
-    [_username resignFirstResponder];
+ 
+    [[WRHCommunicationManager sharedManager] createOccupancy:@{@"name": @"James", @"room_id": @"17"} onCompletion:^(id responseObject) {
+        LocationsTableViewController *vc = [segue destinationViewController];
+        NSLog(@"%@",_loginuser);
+        vc.currentuser = _loginuser;
+        _username.text = nil;
+        [_username resignFirstResponder];
+    }];
+   
     
 
 }

@@ -10,6 +10,14 @@
 #import "WRHCommunicationManager.h"
 #import "WRHRoomManager.h"
 
+@interface WRHOccupancyManager()
+
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) WRHOccupancy *occupancy;
+
+
+@end
+
 @implementation WRHOccupancyManager
 
 
@@ -20,6 +28,11 @@
         sharedMyManager = [[self alloc] init];
     });
     return sharedMyManager;
+}
+
+-(void)setMyName:(NSString *)name
+{
+    self.name = name;
 }
 
 - (void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock
@@ -36,7 +49,7 @@
                 WRHOccupancy *occupancy = [[WRHOccupancy alloc]init];
                 NSDictionary *dictionary = (NSDictionary *)obj;
                 occupancy.name = dictionary[@"name"];
-                occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"roomId"]];
+                occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"room_id"]];
                 [occupancyMutableArray addObject:occupancy];
 
             }];

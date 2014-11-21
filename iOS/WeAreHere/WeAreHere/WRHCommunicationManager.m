@@ -68,20 +68,36 @@ static NSString *baseURLStringKey = @"BaseURL";
     }];
 }
 
+-(void)createOccupancy:(NSDictionary *)occupancyDictionary
+          onCompletion:(void (^)(id))completionBlock
+{
+    [self.operationManager POST:@"/occupancy/" parameters:occupancyDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if(completionBlock)
+            completionBlock(responseObject);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(completionBlock)
+            completionBlock(nil);
+    }];
+}
+
 -(void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock
 {
-//    [self.operationManager GET:@"/occupancy" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        
-//        NSArray *responseArray = (NSArray *)responseObject;
-//        if(completionBlock)
-//            completionBlock(responseArray);
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        if(completionBlock)
-//            completionBlock(nil);
-//        
-//    }];
+    [self.operationManager GET:@"/occupancy" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSArray *responseArray = (NSArray *)responseObject;
+        if(completionBlock)
+            completionBlock(responseArray);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(completionBlock)
+            completionBlock(nil);
+        
+    }];
     
 //    [[WRHRoomManager sharedManager]getRoomsOnCompletion:^(NSArray *roomArray) {
 //        
@@ -93,9 +109,9 @@ static NSString *baseURLStringKey = @"BaseURL";
 //            completionBlock(@[occupancy]);
 //        }
 //    }];
-    
-    if(completionBlock)
-        completionBlock(@[@{@"name":@"James" , @"roomId" : @"17"}]);
+//    
+//    if(completionBlock)
+//        completionBlock(@[@{@"name":@"James" , @"roomId" : @"17"}]);
     
 }
 

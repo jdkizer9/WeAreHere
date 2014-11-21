@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>BaseURL</key>
-	<string>https://we-are-here-james.herokuapp.com</string>
+	<string>http://we-are-here.herokuapp.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>

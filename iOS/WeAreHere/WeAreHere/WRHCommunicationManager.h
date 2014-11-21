@@ -19,6 +19,8 @@
 
 -(void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock;
 
+-(void)createOccupancy:(NSDictionary *)occupancyDictionary
+          onCompletion:(void (^)(id))completionBlock;
 
 
 @end

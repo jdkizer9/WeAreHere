@@ -13,7 +13,7 @@
 
 -(instancetype) initWithDictionary:(NSDictionary *)dictionary;
 
-@property (strong, nonatomic) NSString *objectId;
+@property (strong, nonatomic) NSNumber *objectId;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *roomNumber;
 @property (strong, nonatomic) CLLocation *center;
