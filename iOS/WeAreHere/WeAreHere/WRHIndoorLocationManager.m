@@ -55,7 +55,7 @@
         
         self.pedometerManager = [[CMPedometer alloc]init];
         
-        self.commManager = [WRHCommunicationManager sharedController];
+        self.commManager = [WRHCommunicationManager sharedManager];
         
         self.checkoutDelay = 10.0;
         self.regionState = CLRegionStateUnknown;

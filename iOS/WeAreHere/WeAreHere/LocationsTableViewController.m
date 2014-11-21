@@ -8,15 +8,25 @@
 
 #import "LocationsTableViewController.h"
 #import "MapViewController.h"
+#import "WRHOccupancyManager.h"
+#import "WRHCommunicationManager.h"
 
 @interface LocationsTableViewController (){
     NSIndexPath *lastIndexPath;
 }
 
+@property (strong, nonatomic) NSArray *occupancyArray;
+@property (strong, nonatomic) WRHOccupancy *selectedOccupancy;
 
 @end
 
 @implementation LocationsTableViewController
+
+-(NSArray *)occupancyArray
+{
+    if(!_occupancyArray) _occupancyArray = [[NSArray alloc]init];
+    return _occupancyArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +38,13 @@
                   @"Deborah", @"Visitor", nil];
     self.locations= [[NSArray alloc] initWithObjects: @"Entrance", @"Studio", @"Big Red",
                  @"Fozzie", @"Unknown", nil];
+    
+    [[WRHOccupancyManager sharedManager] getOccupancyOnCompletion:^(NSArray *occupancyArray) {
+        
+        self.occupancyArray = [NSArray arrayWithArray:occupancyArray];
+        [self.tableView reloadData];
+        
+    }];
     
     NSLog(@"Current user is %@", _currentuser);
     
@@ -49,7 +66,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.users count];
+    //return [self.users count];
+    return [self.occupancyArray count];
 }
 
 
@@ -64,8 +82,12 @@
     
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
-    cell.textLabel.text=[self.users objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@", [self.users objectAtIndex:indexPath.row], @"\n", [self.locations objectAtIndex:indexPath.row]];
+    WRHOccupancy *occupancy = [self.occupancyArray objectAtIndex:indexPath.row];
+    
+    //cell.textLabel.text=[self.users objectAtIndex:indexPath.row];
+    cell.textLabel.text = occupancy.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", occupancy.room.name, occupancy.room.roomNumber];
+    //cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@", [self.users objectAtIndex:indexPath.row], @"\n", [self.locations objectAtIndex:indexPath.row]];
     
  
 
@@ -93,9 +115,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     lastIndexPath = indexPath;
-    _finduser = [self.users objectAtIndex:indexPath.row];
-    _findlocation = [self.locations objectAtIndex:indexPath.row];
+    //_finduser = [self.users objectAtIndex:indexPath.row];
+    //_findlocation = [self.locations objectAtIndex:indexPath.row];
     
+    self.selectedOccupancy = [self.occupancyArray objectAtIndex:indexPath.row];
     
     [tableView reloadData];
 }
@@ -105,9 +128,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MapViewController *vc = [segue destinationViewController];
 
-    vc.user = _finduser;
-    vc.location = _findlocation;
-    
+    vc.user = self.selectedOccupancy.name;
+    vc.location = self.selectedOccupancy.room.center;
     
 }
 

@@ -11,6 +11,7 @@
 
 @interface WRHOccupancyManager : NSObject
 
-+ (instancetype)sharedManager;
++ (id)sharedManager;
+- (void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock;
 
 @end

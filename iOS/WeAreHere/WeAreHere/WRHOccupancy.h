@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) WRHRoom *room;
 
-+(void)occupancyObjectFromDictionary:(NSDictionary *)dictionary
-                        onCompletion:(void (^)(WRHOccupancy *))completionBlock;
+//+(void)occupancyObjectFromDictionary:(NSDictionary *)dictionary
+//                        onCompletion:(void (^)(WRHOccupancy *))completionBlock;
 
 @end

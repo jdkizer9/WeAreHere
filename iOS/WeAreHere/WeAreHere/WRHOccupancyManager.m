@@ -30,19 +30,19 @@
         //translate dictionaries to occupancy objects
         [[WRHRoomManager sharedManager] getRoomsOnCompletion:^(NSArray *roomArray) {
             
-            __block NSMutableArray *occupancyArray = [[NSMutableArray alloc]init];
+            __block NSMutableArray *occupancyMutableArray = [[NSMutableArray alloc]init];
             [occupancyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 
                 WRHOccupancy *occupancy = [[WRHOccupancy alloc]init];
                 NSDictionary *dictionary = (NSDictionary *)obj;
                 occupancy.name = dictionary[@"name"];
                 occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"roomId"]];
-                [occupancyArray addObject:occupancy];
+                [occupancyMutableArray addObject:occupancy];
 
             }];
             
             if(completionBlock)
-                completionBlock([NSArray arrayWithArray:occupancyArray]);
+                completionBlock([NSArray arrayWithArray:occupancyMutableArray]);
             
         }];
         
