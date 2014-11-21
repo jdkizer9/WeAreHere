@@ -23,20 +23,36 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - EstimoteSDK (2.1.5)
+  - FMDB (2.3):
+    - FMDB/standard
+  - FMDB/common (2.3)
+  - FMDB/standard (2.3):
+    - FMDB/common
+  - GRMustache (6.8.3):
+    - JRSwizzle (~> 1.0)
   - GroundControl (2.1.0):
     - AFNetworking (~> 2.2)
+  - JRSwizzle (1.0)
+  - Mapbox-iOS-SDK (1.4.1):
+    - FMDB (= 2.3)
+    - GRMustache (= 6.8.3)
+    - SMCalloutView (= 2.0)
+  - SMCalloutView (2.0)
 
 DEPENDENCIES:
   - AFNetworkActivityLogger (~> 2.0)
   - AFNetworking (~> 2.0)
-  - EstimoteSDK
   - GroundControl (~> 2.0)
+  - Mapbox-iOS-SDK
 
 SPEC CHECKSUMS:
   AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  EstimoteSDK: 1a8184137ab16615b982efd0804aa711a0262ce7
+  FMDB: 31ec26773c7f7b7890a6038235a1f2bbd933a7cb
+  GRMustache: ab96109b7ba4b9568425bea40d6cd2cdc7582b6c
   GroundControl: 2f9024230e41ff5e5a8e3ca060ed1b74883bdd1a
+  JRSwizzle: 30da7a2c539a4ebf954b16d15f6dd8221c9f6fa5
+  Mapbox-iOS-SDK: f3c46afe1af0d8ea7863b33ba9e96d94606d4784
+  SMCalloutView: c1906604d47c058400ade5c9d52ab98aa77b7e76
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4

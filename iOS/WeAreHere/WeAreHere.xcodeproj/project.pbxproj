@@ -20,6 +20,10 @@
 		48FE8F0D1A17267800A14C8D /* WRHSampleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */; };
 		48FE8F0F1A17E98E00A14C8D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48FE8F0E1A17E98E00A14C8D /* MapKit.framework */; };
 		6AB643720A0B4708BEA0C6C7 /* libPods-WeAreHereTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */; };
+		DB2DF9361A1E895900103DE9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DF9351A1E895900103DE9 /* LoginViewController.m */; };
+		DB2DF9391A1E8A5300103DE9 /* LocationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DF9381A1E8A5300103DE9 /* LocationsTableViewController.m */; };
+		DB2DF93C1A1E940200103DE9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2DF93B1A1E940200103DE9 /* MapViewController.m */; };
+		DB2DF93F1A1E96D500103DE9 /* cornellfloorplan.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +58,18 @@
 		48FE8F0B1A17267800A14C8D /* WRHSampleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHSampleContainer.h; sourceTree = "<group>"; };
 		48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHSampleContainer.m; sourceTree = "<group>"; };
 		48FE8F0E1A17E98E00A14C8D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		A7F518784CCB47D896154ADF /* Pods-WeAreHereTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHereTests.xcconfig"; path = "Pods/Pods-WeAreHereTests.xcconfig"; sourceTree = "<group>"; };
-		B889DD8A73D34F9C80CE4797 /* Pods-WeAreHere.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHere.xcconfig"; path = "Pods/Pods-WeAreHere.xcconfig"; sourceTree = "<group>"; };
+		AB394E11FBE52489284C0E9C /* Pods-WeAreHereTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHereTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHereTests/Pods-WeAreHereTests.release.xcconfig"; sourceTree = "<group>"; };
 		D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeAreHereTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2B7F6F1B6551236EA68DEF7 /* Pods-WeAreHere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHere/Pods-WeAreHere.debug.xcconfig"; sourceTree = "<group>"; };
+		DB2DF9341A1E895900103DE9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		DB2DF9351A1E895900103DE9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		DB2DF9371A1E8A5300103DE9 /* LocationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationsTableViewController.h; sourceTree = "<group>"; };
+		DB2DF9381A1E8A5300103DE9 /* LocationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationsTableViewController.m; sourceTree = "<group>"; };
+		DB2DF93A1A1E940200103DE9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		DB2DF93B1A1E940200103DE9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; name = cornellfloorplan.mbtiles; path = WeAreHere/cornellfloorplan.mbtiles; sourceTree = "<group>"; };
+		ECFA41194F5AEAC8E15040F0 /* Pods-WeAreHereTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHereTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHereTests/Pods-WeAreHereTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FC525FBA257296B39D97F1B9 /* Pods-WeAreHere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeAreHere.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeAreHere/Pods-WeAreHere.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +96,12 @@
 		48BDE1261A16D393004460F8 = {
 			isa = PBXGroup;
 			children = (
+				DB2DF93E1A1E961B00103DE9 /* Resources */,
 				48BDE1311A16D394004460F8 /* WeAreHere */,
 				48BDE14B1A16D394004460F8 /* WeAreHereTests */,
 				48BDE1301A16D394004460F8 /* Products */,
-				B889DD8A73D34F9C80CE4797 /* Pods-WeAreHere.xcconfig */,
 				7C7E3B5C0F034BFCAFA6583D /* Frameworks */,
-				A7F518784CCB47D896154ADF /* Pods-WeAreHereTests.xcconfig */,
+				4F1B3514C0FCD02E2C806EA3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +123,12 @@
 				48BDE1391A16D394004460F8 /* ViewController.h */,
 				48BDE13A1A16D394004460F8 /* ViewController.m */,
 				48BDE13C1A16D394004460F8 /* Main.storyboard */,
+				DB2DF93A1A1E940200103DE9 /* MapViewController.h */,
+				DB2DF93B1A1E940200103DE9 /* MapViewController.m */,
+				DB2DF9371A1E8A5300103DE9 /* LocationsTableViewController.h */,
+				DB2DF9381A1E8A5300103DE9 /* LocationsTableViewController.m */,
+				DB2DF9341A1E895900103DE9 /* LoginViewController.h */,
+				DB2DF9351A1E895900103DE9 /* LoginViewController.m */,
 				48BDE13F1A16D394004460F8 /* Images.xcassets */,
 				48BDE1411A16D394004460F8 /* LaunchScreen.xib */,
 				48BDE1321A16D394004460F8 /* Supporting Files */,
@@ -156,6 +175,17 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		4F1B3514C0FCD02E2C806EA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D2B7F6F1B6551236EA68DEF7 /* Pods-WeAreHere.debug.xcconfig */,
+				FC525FBA257296B39D97F1B9 /* Pods-WeAreHere.release.xcconfig */,
+				ECFA41194F5AEAC8E15040F0 /* Pods-WeAreHereTests.debug.xcconfig */,
+				AB394E11FBE52489284C0E9C /* Pods-WeAreHereTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7C7E3B5C0F034BFCAFA6583D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +194,14 @@
 				D0151DA42B0F4B1980B3CD84 /* libPods-WeAreHereTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB2DF93E1A1E961B00103DE9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DB2DF93D1A1E95A300103DE9 /* cornellfloorplan.mbtiles */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +257,7 @@
 				TargetAttributes = {
 					48BDE12E1A16D393004460F8 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = AA753846B2;
+						DevelopmentTeam = T8F23BFN6Q;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -231,6 +269,7 @@
 					};
 					48BDE1471A16D394004460F8 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = T8F23BFN6Q;
 						TestTargetID = 48BDE12E1A16D393004460F8;
 					};
 				};
@@ -259,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2DF93F1A1E96D500103DE9 /* cornellfloorplan.mbtiles in Resources */,
 				48BDE13E1A16D394004460F8 /* Main.storyboard in Resources */,
 				48BDE1431A16D394004460F8 /* LaunchScreen.xib in Resources */,
 				48BDE1401A16D394004460F8 /* Images.xcassets in Resources */,
@@ -302,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-WeAreHere-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeAreHere/Pods-WeAreHere-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		80BA4CD1584144A898A541C6 /* Check Pods Manifest.lock */ = {
@@ -332,7 +372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-WeAreHereTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeAreHereTests/Pods-WeAreHereTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -345,7 +385,10 @@
 				48BDE1901A171810004460F8 /* WRHIndoorLocationManager.m in Sources */,
 				48BDE15A1A16DAE4004460F8 /* WRHSampler.m in Sources */,
 				48BDE13B1A16D394004460F8 /* ViewController.m in Sources */,
+				DB2DF93C1A1E940200103DE9 /* MapViewController.m in Sources */,
 				48BDE1381A16D394004460F8 /* AppDelegate.m in Sources */,
+				DB2DF9391A1E8A5300103DE9 /* LocationsTableViewController.m in Sources */,
+				DB2DF9361A1E895900103DE9 /* LoginViewController.m in Sources */,
 				48BDE1351A16D394004460F8 /* main.m in Sources */,
 				48FE8F0D1A17267800A14C8D /* WRHSampleContainer.m in Sources */,
 			);
@@ -467,7 +510,7 @@
 		};
 		48BDE1531A16D394004460F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B889DD8A73D34F9C80CE4797 /* Pods-WeAreHere.xcconfig */;
+			baseConfigurationReference = D2B7F6F1B6551236EA68DEF7 /* Pods-WeAreHere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -479,7 +522,7 @@
 		};
 		48BDE1541A16D394004460F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B889DD8A73D34F9C80CE4797 /* Pods-WeAreHere.xcconfig */;
+			baseConfigurationReference = FC525FBA257296B39D97F1B9 /* Pods-WeAreHere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -491,7 +534,7 @@
 		};
 		48BDE1561A16D394004460F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7F518784CCB47D896154ADF /* Pods-WeAreHereTests.xcconfig */;
+			baseConfigurationReference = ECFA41194F5AEAC8E15040F0 /* Pods-WeAreHereTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -511,7 +554,7 @@
 		};
 		48BDE1571A16D394004460F8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7F518784CCB47D896154ADF /* Pods-WeAreHereTests.xcconfig */;
+			baseConfigurationReference = AB394E11FBE52489284C0E9C /* Pods-WeAreHereTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

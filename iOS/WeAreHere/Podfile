@@ -8,6 +8,8 @@ pod 'AFNetworkActivityLogger', '~> 2.0'
 
 pod 'GroundControl', '~> 2.0'
 
+pod "Mapbox-iOS-SDK"
+
 end
 
 target "WeAreHereTests" do
