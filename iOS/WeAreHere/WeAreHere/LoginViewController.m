@@ -25,6 +25,7 @@
     self.username.delegate = self;
     NSLog(@"view did load");
     [self addImageView];
+    self.password.secureTextEntry = true;
     
 //    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://google.com"]];
 //    
@@ -91,7 +92,9 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     NSLog(@"%@", textField.text);
-    _loginuser = textField.text;
+    self.loginuser = self.username.text;
+    self.loginpassword = self.password.text;
+    [textField resignFirstResponder];
     return true;
 
 }
