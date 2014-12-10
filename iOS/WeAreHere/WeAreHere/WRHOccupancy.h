@@ -11,8 +11,11 @@
 
 @interface WRHOccupancy : NSObject
 
-@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *user;
 @property (strong, nonatomic) WRHRoom *room;
+@property (strong, nonatomic) NSDate *when;
+
++(NSDateFormatter *)longDateFormatter;
 
 //+(void)occupancyObjectFromDictionary:(NSDictionary *)dictionary
 //                        onCompletion:(void (^)(WRHOccupancy *))completionBlock;

@@ -61,7 +61,7 @@
         self.occupancyArray = [NSArray arrayWithArray:occupancyArray];
 
         for (WRHOccupancy *myocc in occupancyArray){
-            if([myocc.name isEqualToString:self.currentuser]){
+            if([myocc.user isEqualToString:self.currentuser]){
                 NSLog(@"it's my user!");
                 NSLog(@"%@", [myocc.room description]);
                 self.currentlocation = myocc.room.center;
@@ -116,9 +116,9 @@
     WRHOccupancy *occupancy = [self.occupancyArray objectAtIndex:indexPath.row];
     
 
-    cell.textLabel.text = occupancy.name;
+    cell.textLabel.text = occupancy.user;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", occupancy.room.name, occupancy.room.roomNumber];
-    [self.userintable addObject:occupancy.name];
+    [self.userintable addObject:occupancy.user];
 
  
 
@@ -157,14 +157,14 @@
     if ([self.cellsSelected containsObject:indexPath])
     {
         [self.cellsSelected removeObject:indexPath];
-        [self.sendusers removeObject:curroccupancy.name];
+        [self.sendusers removeObject:curroccupancy.user];
         [self.sendlocations removeObject:curroccupancy.room.center];
  
     }
     else
     {
         [self.cellsSelected addObject:indexPath];
-        [self.sendusers addObject:curroccupancy.name];
+        [self.sendusers addObject:curroccupancy.user];
         [self.sendlocations addObject:curroccupancy.room.center];
         
 

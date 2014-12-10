@@ -25,4 +25,15 @@
 -(void)getRoomForBeaconSamples:(NSArray *)beaconSampleArray
           onCompletion:(void (^)(NSNumber *roomId))completionBlock;
 
+-(void)getAllUsersOnCompletion:(void (^)(NSArray *userArray))completionBlock;
+
+-(void)loggedIn:(void (^)(BOOL loggedIn))completionBlock;
+-(void)logout;
+
+-(void)logInWithUsername:(NSString *)username
+                 password:(NSString *)password
+             onCompletion:(void (^)(id))completionBlock;
+
+-(void)getCurrentUserOnCompletion:(void (^)(id))completionBlock;
+
 @end

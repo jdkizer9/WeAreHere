@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3179A73038DA4FC482974E89 /* libPods-WeAreHere.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3859F4964D5C4608911E7B1F /* libPods-WeAreHere.a */; };
+		482074711A37EA100083A938 /* WRHUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 482074701A37EA100083A938 /* WRHUserManager.m */; };
+		482074741A37EE2A0083A938 /* WRHUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 482074731A37EE2A0083A938 /* WRHUser.m */; };
 		48A5A86E1A1F056800611DD8 /* WRHOccupancyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A5A86D1A1F056800611DD8 /* WRHOccupancyManager.m */; };
 		48A5A8711A1F059400611DD8 /* WRHRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48A5A8701A1F059400611DD8 /* WRHRoomManager.m */; };
 		48BDE1351A16D394004460F8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 48BDE1341A16D394004460F8 /* main.m */; };
@@ -45,6 +47,10 @@
 
 /* Begin PBXFileReference section */
 		3859F4964D5C4608911E7B1F /* libPods-WeAreHere.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WeAreHere.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4820746F1A37EA100083A938 /* WRHUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHUserManager.h; sourceTree = "<group>"; };
+		482074701A37EA100083A938 /* WRHUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHUserManager.m; sourceTree = "<group>"; };
+		482074721A37EE2A0083A938 /* WRHUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHUser.h; sourceTree = "<group>"; };
+		482074731A37EE2A0083A938 /* WRHUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHUser.m; sourceTree = "<group>"; };
 		48A5A86C1A1F056800611DD8 /* WRHOccupancyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHOccupancyManager.h; sourceTree = "<group>"; };
 		48A5A86D1A1F056800611DD8 /* WRHOccupancyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WRHOccupancyManager.m; sourceTree = "<group>"; };
 		48A5A86F1A1F059400611DD8 /* WRHRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WRHRoomManager.h; sourceTree = "<group>"; };
@@ -191,6 +197,10 @@
 				48FE8F0C1A17267800A14C8D /* WRHSampleContainer.m */,
 				48BDE18E1A171810004460F8 /* WRHIndoorLocationManager.h */,
 				48BDE18F1A171810004460F8 /* WRHIndoorLocationManager.m */,
+				482074721A37EE2A0083A938 /* WRHUser.h */,
+				482074731A37EE2A0083A938 /* WRHUser.m */,
+				4820746F1A37EA100083A938 /* WRHUserManager.h */,
+				482074701A37EA100083A938 /* WRHUserManager.m */,
 				48E9F3E41A1E8D770042258E /* WRHCommunicationManager.h */,
 				48E9F3E51A1E8D770042258E /* WRHCommunicationManager.m */,
 				48E9F3ED1A1EDF5F0042258E /* WRHOccupancy.h */,
@@ -288,7 +298,7 @@
 				TargetAttributes = {
 					48BDE12E1A16D393004460F8 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = T8F23BFN6Q;
+						DevelopmentTeam = AA753846B2;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -300,7 +310,7 @@
 					};
 					48BDE1471A16D394004460F8 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = T8F23BFN6Q;
+						DevelopmentTeam = AA753846B2;
 						TestTargetID = 48BDE12E1A16D393004460F8;
 					};
 				};
@@ -419,11 +429,13 @@
 				48E9F3E61A1E8D770042258E /* WRHCommunicationManager.m in Sources */,
 				48E9F3E91A1ED0410042258E /* WRHRoom.m in Sources */,
 				48BDE15A1A16DAE4004460F8 /* WRHSampler.m in Sources */,
+				482074741A37EE2A0083A938 /* WRHUser.m in Sources */,
 				48A5A8711A1F059400611DD8 /* WRHRoomManager.m in Sources */,
 				48BDE13B1A16D394004460F8 /* ViewController.m in Sources */,
 				DB2DF93C1A1E940200103DE9 /* MapViewController.m in Sources */,
 				48A5A86E1A1F056800611DD8 /* WRHOccupancyManager.m in Sources */,
 				48BDE1381A16D394004460F8 /* AppDelegate.m in Sources */,
+				482074711A37EA100083A938 /* WRHUserManager.m in Sources */,
 				DB2DF9391A1E8A5300103DE9 /* LocationsTableViewController.m in Sources */,
 				DB2DF9361A1E895900103DE9 /* LoginViewController.m in Sources */,
 				48BDE1351A16D394004460F8 /* main.m in Sources */,

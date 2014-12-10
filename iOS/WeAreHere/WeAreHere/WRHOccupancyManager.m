@@ -48,8 +48,10 @@
                 
                 WRHOccupancy *occupancy = [[WRHOccupancy alloc]init];
                 NSDictionary *dictionary = (NSDictionary *)obj;
-                occupancy.name = dictionary[@"name"];
+                occupancy.user = dictionary[@"user"];
                 occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"room_id"]];
+                occupancy.when = [[WRHOccupancy longDateFormatter] dateFromString:dictionary[@"when"]];
+                
                 [occupancyMutableArray addObject:occupancy];
 
             }];
