@@ -232,32 +232,27 @@
     
     
     NSDictionary *rssiDictionary = [self dictionaryForBeaconSamples:sampleArray];
+    NSLog(@"%@", rssiDictionary);
+    
+    NSArray *beaconRSSIArray = [self arrayForBeaconRSSIDictionary: rssiDictionary];
+//    NSArray *beaconRSSIArray = @[@{@"beacon_id" : @"30205:1",
+//                                   @"rssi" : @(-74)}];
+    
+    [[WRHCommunicationManager sharedManager] getRoomForBeaconSamples:beaconRSSIArray onCompletion:^(NSNumber *roomId) {
+        
+        if(roomId)
+        {
+            NSDictionary *occupancyDictionary = @{@"name": self.userName, @"room_id": roomId};
+            [[WRHCommunicationManager sharedManager] createOccupancy:occupancyDictionary onCompletion:^(id responseObject) {
+                
+                
+                
+            }];
+        }
+    }];
     
     //get max rssi in dictionary and key
     
-    __block id maxKey = nil;
-    __block NSNumber *maxValue = @(-10000);
-    [rssiDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-       
-        if([(NSNumber *)obj compare:maxValue] == NSOrderedDescending)
-        {
-            maxKey = key;
-            maxValue = (NSNumber *)obj;
-        }
-        
-    }];
-    
-    assert(maxKey);
-    
-    NSString *roomId = [self roomIdForBeaconKey:maxKey];
-    
-    NSDictionary *occupancyDictionary = @{@"name": self.userName, @"room_id": roomId};
-    
-    [[WRHCommunicationManager sharedManager] createOccupancy:occupancyDictionary onCompletion:^(id responseObject) {
-        
-        
-        
-    }];
     
     
     //reduce the beacon samples
@@ -348,16 +343,28 @@
     return [NSDictionary dictionaryWithDictionary:beaconDictionaryWithRSSI];
 }
 
+-(NSArray *)arrayForBeaconRSSIDictionary:(NSDictionary *)beaconRSSIDictionary
+{
+    __block NSMutableArray *beaconRSSIDictionaryMutableArray = [[NSMutableArray alloc]init];
+    [beaconRSSIDictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        [beaconRSSIDictionaryMutableArray addObject:@{@"beacon_id": key, @"rssi": obj}];
+        
+    }];
+    return [NSArray arrayWithArray:beaconRSSIDictionaryMutableArray];
+}
+
 -(NSString *)roomIdForBeaconKey:(NSString *)beaconKey
 {
     NSDictionary *roomIdMapping = @{@"30201:10" : @(17),
-                                    @"30205:1" : @(11),
+                                    @"30205:1" : @(2),
                                     @"30299:2" : @(14),
                                     @"30204:1" : @(12),
                                     @"30207:1" : @(9),
                                     @"30206:1" : @(10),
                                     @"30203:2" : @(13),
-                                    @"30200:4" : @(14)};
+                                    @"30200:4" : @(14),
+                                    @"65535:1" : @(2)};
     
     return [roomIdMapping objectForKey:beaconKey];
 }

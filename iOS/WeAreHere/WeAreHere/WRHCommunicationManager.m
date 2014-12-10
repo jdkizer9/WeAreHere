@@ -41,7 +41,7 @@ static NSString *baseURLStringKey = @"BaseURL";
         NSString *baseURLString = [[[NSBundle mainBundle] objectForInfoDictionaryKey:baseURLStringKey] copy];
         
         self.operationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:baseURLString]];
-        
+        self.operationManager.requestSerializer = [AFJSONRequestSerializer serializerWithWritingOptions:0];
         self.operationManager.requestSerializer.HTTPShouldHandleCookies = YES;
     }
     
@@ -113,6 +113,39 @@ static NSString *baseURLStringKey = @"BaseURL";
 //    if(completionBlock)
 //        completionBlock(@[@{@"name":@"James" , @"roomId" : @"17"}]);
     
+}
+
+-(void)getRoomForBeaconSamples:(NSArray *)beaconSampleArray
+                  onCompletion:(void (^)(NSNumber *roomId))completionBlock
+{
+    [self.operationManager POST:@"/location/" parameters:beaconSampleArray success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        if([responseObject isKindOfClass:[NSDictionary class]] &&
+            [(NSDictionary *)responseObject objectForKey:@"room_id"])
+        {
+            id roomIdObject = [(NSDictionary *)responseObject objectForKey:@"room_id"];
+            if([roomIdObject isKindOfClass:[NSNumber class]])
+            {
+                NSNumber *roomId = (NSNumber *)roomIdObject;
+                
+                if(completionBlock)
+                    completionBlock(roomId);
+                return;
+                
+            }
+            
+        }
+        
+        if(completionBlock)
+            completionBlock(nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(completionBlock)
+            completionBlock(nil);
+        
+    }];
 }
 
 
