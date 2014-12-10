@@ -22,5 +22,7 @@
 -(void)createOccupancy:(NSDictionary *)occupancyDictionary
           onCompletion:(void (^)(id))completionBlock;
 
+-(void)getRoomForBeaconSamples:(NSArray *)beaconSampleArray
+          onCompletion:(void (^)(NSNumber *roomId))completionBlock;
 
 @end
