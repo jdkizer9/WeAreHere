@@ -42,7 +42,7 @@ static NSString *baseURLStringKey = @"BaseURL";
         
         self.operationManager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:baseURLString]];
         self.operationManager.requestSerializer = [AFJSONRequestSerializer serializerWithWritingOptions:0];
-        self.operationManager.requestSerializer.HTTPShouldHandleCookies = YES;
+        //self.operationManager.requestSerializer.HTTPShouldHandleCookies = YES;
     }
     
     return self;
@@ -71,7 +71,7 @@ static NSString *baseURLStringKey = @"BaseURL";
 -(void)createOccupancy:(NSDictionary *)occupancyDictionary
           onCompletion:(void (^)(id))completionBlock
 {
-    [self.operationManager POST:@"/occupancy/" parameters:occupancyDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.operationManager POST:@"/checkin/" parameters:occupancyDictionary success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         if(completionBlock)
             completionBlock(responseObject);
@@ -86,7 +86,7 @@ static NSString *baseURLStringKey = @"BaseURL";
 
 -(void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock
 {
-    [self.operationManager GET:@"/occupancy" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.operationManager GET:@"/checkin" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *responseArray = (NSArray *)responseObject;
         if(completionBlock)
@@ -145,6 +145,49 @@ static NSString *baseURLStringKey = @"BaseURL";
         if(completionBlock)
             completionBlock(nil);
         
+    }];
+}
+
+-(void)logout
+{
+    [self.operationManager.requestSerializer clearAuthorizationHeader];
+}
+
+-(void) logInWithUsername:(NSString *)username
+                 password:(NSString *)password
+             onCompletion:(void (^)(id))completionBlock
+
+{
+
+    [self.operationManager.requestSerializer setAuthorizationHeaderFieldWithUsername:username password:password];
+    
+    [self.operationManager GET:@"/users/me/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if(completionBlock)
+            completionBlock(responseObject);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(completionBlock)
+            completionBlock(nil);
+    }];
+    
+    
+    
+}
+-(void)getCurrentUserOnCompletion:(void (^)(id))completionBlock
+{
+    [self.operationManager GET:@"/users/me" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        if(completionBlock)
+            completionBlock(responseObject);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if(completionBlock)
+            completionBlock(nil);
     }];
 }
 
