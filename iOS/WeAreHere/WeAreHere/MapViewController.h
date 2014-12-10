@@ -13,6 +13,11 @@
 
 @property NSString *user;
 @property CLLocation *location;
+@property NSMutableArray *receiveusers;
+@property NSMutableArray *receivelocations;
+@property NSMutableArray *occupiedrooms;
+
+
 
 
 @end
