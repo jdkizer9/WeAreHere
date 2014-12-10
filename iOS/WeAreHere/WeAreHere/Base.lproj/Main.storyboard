@@ -153,6 +153,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="H54-lH-aZx"/>
                     <connections>
+                        <outlet property="password" destination="D0u-JV-vDT" id="iiz-fe-VBr"/>
                         <outlet property="username" destination="qX3-S9-0y3" id="1iP-BM-jJY"/>
                     </connections>
                 </viewController>
