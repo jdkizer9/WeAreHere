@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface LocationsTableViewController : UITableViewController
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, strong) NSString *currentuser;
-@property NSString *finduser;
-@property NSString *findlocation;
+@property (nonatomic, strong) CLLocation *currentlocation;
+
+
 
 
 @end
