@@ -10,7 +10,9 @@
 #import "LocationsTableViewController.h"
 #import "WRHCommunicationManager.h"
 #import "WRHIndoorLocationManager.h"
+#import "WRHUserManager.h"
 
+static NSString *baseURLStringKey = @"BaseURL";
 
 @interface LoginViewController ()
 
@@ -44,7 +46,6 @@
     
     // Do any additional setup after loading the view.
 }
-
 
 
 
@@ -139,7 +140,45 @@
 
 }
 
+- (IBAction)pressedGoButton:(id)sender {
+    
+    self.view.userInteractionEnabled = NO;
+    self.navigationController.navigationBar.userInteractionEnabled = NO;
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicator.hidesWhenStopped = YES;
+    [activityIndicator startAnimating];
+    activityIndicator.center = self.view.center;
+    [self.view addSubview:activityIndicator];
+    
+    [[WRHUserManager sharedManager] logInWithUsername:self.loginuser password:self.loginpassword  onCompletion:^(WRHUser *user) {
+        
+        self.view.userInteractionEnabled = YES;
+        self.navigationController.navigationBar.userInteractionEnabled = YES;
+        [activityIndicator removeFromSuperview];
+        
+        if(user)
+            [self performSegueWithIdentifier:@"Show Occupancy" sender:nil];
+        
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Credentials" message:@"Please enter a valid username and password to continue." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+            [alert show];
+        }
+        
+        
+            
+    }];
+    
+}
 
+
+- (IBAction)registerButtonPress:(id)sender {
+    
+    NSString *URLString = [NSString stringWithFormat:@"%@/register", [[[NSBundle mainBundle] objectForInfoDictionaryKey:baseURLStringKey] copy]];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URLString]];
+    
+}
 
 
 @end

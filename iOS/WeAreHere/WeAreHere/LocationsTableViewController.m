@@ -47,6 +47,13 @@
     
     NSLog(@"Current user is %@", self.currentuser);
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    //self.refreshControl.backgroundColor = [UIColor purpleColor];
+    //self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(loadData)
+                  forControlEvents:UIControlEventValueChanged];
+    
     
 
 
@@ -70,6 +77,7 @@
         }
         
         [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
         
     }];
 }

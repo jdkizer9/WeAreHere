@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1HY-ZW-Gb5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1HY-ZW-Gb5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -118,7 +118,7 @@
                                     <rect key="frame" x="172" y="581" width="30" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="KpZ-2L-wBR" kind="show" id="P1z-KI-dOr"/>
+                                    <action selector="pressedGoButton:" destination="HpM-af-TdI" eventType="touchUpInside" id="uxd-Wd-OvW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkV-Vn-T5e">
@@ -130,6 +130,15 @@
                                     <rect key="frame" x="147" y="356" width="81" height="21"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hy-Rj-UWM">
+                                <rect key="frame" x="159" y="433" width="57" height="30"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerButtonPress:" destination="HpM-af-TdI" eventType="touchUpInside" id="3ne-2O-Jnu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -152,9 +161,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="H54-lH-aZx"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="password" destination="D0u-JV-vDT" id="iiz-fe-VBr"/>
                         <outlet property="username" destination="qX3-S9-0y3" id="1iP-BM-jJY"/>
+                        <segue destination="KpZ-2L-wBR" kind="show" identifier="Show Occupancy" id="1dC-ZO-XfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Su-mv-xra" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,7 +362,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="P1z-KI-dOr"/>
-        <segue reference="nSw-Kh-uCN"/>
+        <segue reference="1dC-ZO-XfN"/>
+        <segue reference="Z6w-a6-yKR"/>
     </inferredMetricsTieBreakers>
 </document>

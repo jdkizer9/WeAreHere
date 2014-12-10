@@ -117,6 +117,11 @@
                                                                 @"room_number" : @"",
                                                                 @"y_coord" : @"40",
                                                                 @"x_coord" : @"133"}],
+                           [[WRHRoom alloc]initWithDictionary:@{@"id" : @(99),
+                                                                @"name":@"Never Neverland",
+                                                                @"room_number" : @"",
+                                                                @"y_coord" : @"40",
+                                                                @"x_coord" : @"133"}],
                            
                            
                            ];

@@ -64,15 +64,23 @@
 
 -(void)logInWithUsername:(NSString *)username
                 password:(NSString *)password
-            onCompletion:(void (^)(id))completionBlock
+            onCompletion:(void (^)(WRHUser *user))completionBlock
 {
     
     [[WRHCommunicationManager sharedManager]logInWithUsername:username password:password onCompletion:^(id obj) {
         
-        if(obj)
+        
+        if(obj && [obj isKindOfClass:[NSDictionary class]])
         {
-            
+            WRHUser *user = [[WRHUser alloc]init];
+            user.userId = [obj objectForKey:@"id"];
+            user.username = [obj objectForKey:@"username"];
+            if(completionBlock)
+                completionBlock(user);
         }
+        else
+            if(completionBlock)
+                completionBlock(nil);
         
     }];
     

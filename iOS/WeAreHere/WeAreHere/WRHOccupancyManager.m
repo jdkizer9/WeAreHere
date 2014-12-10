@@ -46,13 +46,21 @@
             __block NSMutableArray *occupancyMutableArray = [[NSMutableArray alloc]init];
             [occupancyArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 
-                WRHOccupancy *occupancy = [[WRHOccupancy alloc]init];
                 NSDictionary *dictionary = (NSDictionary *)obj;
-                occupancy.user = dictionary[@"user"];
-                occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"room_id"]];
-                occupancy.when = [[WRHOccupancy longDateFormatter] dateFromString:dictionary[@"when"]];
-                
-                [occupancyMutableArray addObject:occupancy];
+                if([dictionary[@"room_id"] integerValue] > 0)
+                {
+                    
+                    WRHOccupancy *occupancy = [[WRHOccupancy alloc]init];
+                    
+                    
+                    occupancy.user = dictionary[@"user"];
+                    
+                    occupancy.room = [[WRHRoomManager sharedManager] getRoomForRoomId:dictionary[@"room_id"]];
+                    NSLog(@"%@", dictionary[@"room_id"]);
+                    occupancy.when = [[WRHOccupancy longDateFormatter] dateFromString:dictionary[@"when"]];
+                    
+                    [occupancyMutableArray addObject:occupancy];
+                }
 
             }];
             

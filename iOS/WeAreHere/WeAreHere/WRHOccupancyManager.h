@@ -14,4 +14,5 @@
 + (id)sharedManager;
 - (void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock;
 
+
 @end

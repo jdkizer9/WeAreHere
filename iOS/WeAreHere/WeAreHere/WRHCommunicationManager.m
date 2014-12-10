@@ -84,9 +84,10 @@ static NSString *baseURLStringKey = @"BaseURL";
     }];
 }
 
+
 -(void)getOccupancyOnCompletion:(void (^)(NSArray *occupancyArray))completionBlock
 {
-    [self.operationManager GET:@"/checkin" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.operationManager GET:@"/occupancy/" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSArray *responseArray = (NSArray *)responseObject;
         if(completionBlock)

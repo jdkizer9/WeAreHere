@@ -42,6 +42,14 @@
                                                                         andTitle:@"Your Location!"];
     
     [mapView addAnnotation:annotation];
+    
+    RMCircleAnnotation *pointannotation = [[RMCircleAnnotation alloc] initWithMapView:mapView
+                                                          coordinate:yourLocation
+                                                            andTitle:@"Your Location!"];
+    
+    [mapView addAnnotation:pointannotation];
+    
+    
 
     for(CLLocation* loc in self.receivelocations){
         NSUInteger locationindex = [self.receivelocations indexOfObject:loc];

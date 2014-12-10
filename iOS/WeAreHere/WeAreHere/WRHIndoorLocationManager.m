@@ -173,6 +173,13 @@
     //stop pedometer monitoring
     [self stopMonitoringPedometer];
     
+    NSDictionary *occupancyDictionary = @{@"name": self.userName, @"room_id": @(-1)};
+    [[WRHCommunicationManager sharedManager] createOccupancy:occupancyDictionary onCompletion:^(id responseObject) {
+        
+        
+        
+    }];
+    
     //hack for background processing
     //[self.locationManager stopUpdatingLocation];
 }

@@ -20,7 +20,7 @@
 
 -(void)logInWithUsername:(NSString *)username
                 password:(NSString *)password
-            onCompletion:(void (^)(id))completionBlock;
+            onCompletion:(void (^)(WRHUser *user))completionBlock;
 
 //-(void)getCurrentUserOnCompletion:(void (^)(id))completionBlock;
 
