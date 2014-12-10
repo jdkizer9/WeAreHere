@@ -12,12 +12,17 @@
 #import "WRHCommunicationManager.h"
 
 @interface LocationsTableViewController (){
-    NSIndexPath *lastIndexPath;
+//    NSIndexPath *lastIndexPath;
 }
 
+@property (strong, nonatomic) NSArray *indexarray;
 @property (strong, nonatomic) NSArray *occupancyArray;
 @property (strong, nonatomic) WRHOccupancy *selectedOccupancy;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) NSMutableArray *cellsSelected;
+@property (strong, nonatomic) NSMutableArray *sendusers;
+@property (strong, nonatomic) NSMutableArray *sendlocations;
+@property (strong, nonatomic) NSMutableArray *userintable;
 
 @end
 
@@ -32,25 +37,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = _currentuser;
+    self.cellsSelected = [NSMutableArray array];
+    self.userintable = [NSMutableArray array];
+    self.sendusers = [NSMutableArray array];
+    self.sendlocations = [NSMutableArray array];
+    self.title = self.currentuser;
     
     
-    self.users= [[NSArray alloc] initWithObjects: @"Tara", @"Neil", @"James",
-                  @"Deborah", @"Visitor", nil];
-    self.locations= [[NSArray alloc] initWithObjects: @"Entrance", @"Studio", @"Big Red",
-                 @"Fozzie", @"Unknown", nil];
     
-    //[self loadData];
-    
-    NSLog(@"Current user is %@", _currentuser);
+    NSLog(@"Current user is %@", self.currentuser);
     
     
-//    self.refreshControl = [[UIRefreshControl alloc] init];
-//    self.refreshControl.backgroundColor = [UIColor purpleColor];
-//    self.refreshControl.tintColor = [UIColor whiteColor];
-//    [self.refreshControl addTarget:self
-//                            action:@selector(loadData)
-//                  forControlEvents:UIControlEventValueChanged];
+
 
     
 }
@@ -61,6 +59,16 @@
     [[WRHOccupancyManager sharedManager] getOccupancyOnCompletion:^(NSArray *occupancyArray) {
         
         self.occupancyArray = [NSArray arrayWithArray:occupancyArray];
+
+        for (WRHOccupancy *myocc in occupancyArray){
+            if([myocc.name isEqualToString:self.currentuser]){
+                NSLog(@"it's my user!");
+                NSLog(@"%@", [myocc.room description]);
+                self.currentlocation = myocc.room.center;
+                break;
+            }
+        }
+        
         [self.tableView reloadData];
         
     }];
@@ -70,6 +78,7 @@
 {
     [super viewWillAppear:animated];
     [self loadData];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,7 +86,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
@@ -88,7 +97,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    //return [self.users count];
+//    return [self.users count];
     return [self.occupancyArray count];
 }
 
@@ -106,43 +115,66 @@
     cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
     WRHOccupancy *occupancy = [self.occupancyArray objectAtIndex:indexPath.row];
     
-    //cell.textLabel.text=[self.users objectAtIndex:indexPath.row];
+
     cell.textLabel.text = occupancy.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@: %@", occupancy.room.name, occupancy.room.roomNumber];
-    //cell.textLabel.text = [NSString stringWithFormat:@"%@%@%@", [self.users objectAtIndex:indexPath.row], @"\n", [self.locations objectAtIndex:indexPath.row]];
-    
+    [self.userintable addObject:occupancy.name];
+
  
 
     
-    
-
-    if ([indexPath compare:lastIndexPath] == NSOrderedSame)
+    if ([self.cellsSelected containsObject:indexPath])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
+        
     }
-    
     return cell;
-}
+        
+        
+    }
+
+
 
 
 - (IBAction)unwindToTable:(UIStoryboardSegue *)unwindSegue
 {
-    
+    [self.sendlocations removeAllObjects];
+    [self.sendusers removeAllObjects];
+    [self.cellsSelected removeAllObjects];
+//  MapViewController *vc = [unwindSegue ];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    lastIndexPath = indexPath;
-    //_finduser = [self.users objectAtIndex:indexPath.row];
-    //_findlocation = [self.locations objectAtIndex:indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    self.selectedOccupancy = [self.occupancyArray objectAtIndex:indexPath.row];
+    WRHOccupancy *curroccupancy = [self.occupancyArray objectAtIndex:indexPath.row];
     
+    if ([self.cellsSelected containsObject:indexPath])
+    {
+        [self.cellsSelected removeObject:indexPath];
+        [self.sendusers removeObject:curroccupancy.name];
+        [self.sendlocations removeObject:curroccupancy.room.center];
+ 
+    }
+    else
+    {
+        [self.cellsSelected addObject:indexPath];
+        [self.sendusers addObject:curroccupancy.name];
+        [self.sendlocations addObject:curroccupancy.room.center];
+        
+
+    }
+    
+    
+//    self.selectedOccupancy = [self.occupancyArray objectAtIndex:indexPath.row];
     [tableView reloadData];
+    
+    
 }
 
 
@@ -150,8 +182,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     MapViewController *vc = [segue destinationViewController];
 
-    vc.user = self.selectedOccupancy.name;
-    vc.location = self.selectedOccupancy.room.center;
+   
+    
+    
+    vc.user = self.currentuser;
+    vc.location = self.currentlocation;
+    vc.receiveusers = self.sendusers;
+    vc.receivelocations = self.sendlocations;
+
+    
     
 }
 
